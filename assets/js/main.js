@@ -119,6 +119,13 @@
     var action = form.getAttribute('action') || '';
     var email = form.getAttribute('data-email') || '';
     var subject = form.getAttribute('data-subject') || 'Demande de contact';
+    // Messages fournis par le générateur, dans la langue du site
+    var msg = {
+      mail: form.getAttribute('data-msg-mail') || 'Votre logiciel de messagerie va s’ouvrir.',
+      sending: form.getAttribute('data-msg-sending') || 'Envoi en cours…',
+      ok: form.getAttribute('data-msg-ok') || 'Merci ! Votre message est parti.',
+      err: form.getAttribute('data-msg-err') || 'L’envoi a échoué. Écrivez-nous à'
+    };
 
     // Tant que l'endpoint Formspree n'est pas configuré, on bascule sur un
     // mailto pré-rempli plutôt que d'envoyer les données dans le vide.
@@ -145,13 +152,13 @@
           + '?subject=' + encodeURIComponent(subject)
           + '&body=' + encodeURIComponent(lines.join('\n'));
 
-        setStatus('Votre logiciel de messagerie va s’ouvrir avec le message pré-rempli.', 'ok');
+        setStatus(msg.mail, 'ok');
         return;
       }
 
       submit.disabled = true;
       var original = submit.textContent;
-      submit.textContent = 'Envoi en cours…';
+      submit.textContent = msg.sending;
       setStatus('', '');
 
       fetch(action, {
@@ -162,10 +169,10 @@
         .then(function (res) {
           if (!res.ok) throw new Error('HTTP ' + res.status);
           form.reset();
-          setStatus('Merci ! Votre message est parti. Réponse sous 24 h ouvrées.', 'ok');
+          setStatus(msg.ok, 'ok');
         })
         .catch(function () {
-          setStatus('L’envoi a échoué. Écrivez-nous directement à ' + email + '.', 'err');
+          setStatus(msg.err + ' ' + email + '.', 'err');
         })
         .finally(function () {
           submit.disabled = false;

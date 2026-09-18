@@ -68,7 +68,7 @@ document.documentElement.classList.remove('no-js');
 
 <section class="page-head">
   <div class="wrap">
-    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+    <nav class="breadcrumb" aria-label="Fil d’Ariane">
       <a href="index.html">Accueil</a><span>/</span><span aria-current="page">Contact</span>
     </nav>
     <h1>Réservez votre bilan de forme</h1>
@@ -85,7 +85,10 @@ document.documentElement.classList.remove('no-js');
       VOTRE_ID_FORMSPREE. En attendant, le bouton ouvre la messagerie du
       visiteur avec un message pré-rempli vers contact@coachify.shop.
     -->
-    <form class="form" id="contact-form" action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST" data-email="contact@coachify.shop" data-subject="Demande de bilan de forme">
+    <form class="form" id="contact-form" action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST"
+          data-email="contact@coachify.shop" data-subject="Demande de bilan de forme"
+          data-msg-mail="Votre logiciel de messagerie va s’ouvrir avec le message pré-rempli." data-msg-sending="Envoi en cours…"
+          data-msg-ok="Merci ! Votre message est parti. Réponse sous 24 h ouvrées." data-msg-err="L’envoi a échoué. Écrivez-nous directement à">
       <div class="form__row">
         <div class="field">
           <label for="nom">Prénom et nom <span class="req" aria-hidden="true">*</span></label>
@@ -136,8 +139,7 @@ document.documentElement.classList.remove('no-js');
       <p id="form-status" class="form__status" role="status" aria-live="polite"></p>
 
       <p class="form__note">
-        Vos données servent uniquement à vous répondre et ne sont jamais revendues.
-        Voir la <a href="mentions-legales.html#confidentialite">politique de confidentialité</a>.
+        Vos données servent uniquement à vous répondre et ne sont jamais revendues. Voir la <a href="mentions-legales.html#confidentialite">politique de confidentialité</a>.
       </p>
     </form>
 
